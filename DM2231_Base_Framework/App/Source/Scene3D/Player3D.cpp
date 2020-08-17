@@ -351,7 +351,7 @@ void CPlayer3D::ProcessMovement(const Player_Movement direction, const float del
 	if (direction == RIGHT)
 		vec3Position += vec3Right * velocity;
 	if (direction == SPRINT)
-		vec3Position += vec3Front * velocity * glm::vec3(0, 0, 2.5);
+		vec3Position += vec3Front * velocity * 1.5f;
 
 	// Indicate that camera sway is to be updated
 	if (bCameraSwayActive)

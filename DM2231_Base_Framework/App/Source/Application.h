@@ -10,6 +10,11 @@
 
 #include "TimeControl\StopWatch.h"
 
+// FPS Counter
+#include "TimeControl\FPSCounter.h"
+
+#include "Scene3D/Scene3D.h"
+
 struct GLFWwindow;
 
 class CSettings;
@@ -29,6 +34,9 @@ public:
 	int GetWindowHeight(void) const;
 	// Get window width
 	int GetWindowWidth(void) const;
+
+	void setSoundEngine(CSoundController* engine);
+	CSoundController* getSoundEngine();
 	
 protected:
 	// Declare timer for calculating time per frame
@@ -36,6 +44,14 @@ protected:
 
 	// The handler to the CSettings instance
 	CSettings* cSettings;
+	// The handler to the CScene2D instance
+	//CScene2D* cScene2D;
+	// The handler to the CScene3D instance
+	CScene3D* cScene3D;
+	// The handler to the CFPSCounter instance
+	CFPSCounter* cFPSCounter;
+
+	CSoundController* soundengine;
 
 	// Constructor
 	Application(void);

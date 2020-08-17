@@ -12,10 +12,74 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\CameraEffects\CameraEffects.cpp" />
+    <ClCompile Include="Source\CameraEffects\ProgressBar.cpp" />
+    <ClCompile Include="Source\CSVReader\CSVReader.cpp" />
+    <ClCompile Include="Source\CSVWriter\CSVWriter.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Minimap\Minimap.cpp" />
+    <ClCompile Include="Source\Scene2D\AnimatedSprites.cpp" />
+    <ClCompile Include="Source\Scene2D\Enemy2D.cpp" />
+    <ClCompile Include="Source\Scene2D\Entity2D.cpp" />
+    <ClCompile Include="Source\Scene2D\Entity2DFactory.cpp" />
+    <ClCompile Include="Source\Scene2D\Map2D.cpp" />
+    <ClCompile Include="Source\Scene2D\Physics2D.cpp" />
+    <ClCompile Include="Source\Scene2D\Player2D.cpp" />
+    <ClCompile Include="Source\Scene2D\Scene2D.cpp" />
+    <ClCompile Include="Source\Scene3D\Camera.cpp" />
+    <ClCompile Include="Source\Scene3D\CrossHair\CrossHair.cpp" />
+    <ClCompile Include="Source\Scene3D\Enemy3D.cpp" />
+    <ClCompile Include="Source\Scene3D\EnemyBoss3D.cpp" />
+    <ClCompile Include="Source\Scene3D\EntityManager.cpp" />
+    <ClCompile Include="Source\Scene3D\GroundMap.cpp" />
+    <ClCompile Include="Source\Scene3D\GroundTile.cpp" />
+    <ClCompile Include="Source\Scene3D\Physics3D.cpp" />
+    <ClCompile Include="Source\Scene3D\Player3D.cpp" />
+    <ClCompile Include="Source\Scene3D\Scene3D.cpp" />
+    <ClCompile Include="Source\Scene3D\SkyBox.cpp" />
+    <ClCompile Include="Source\Scene3D\Structure3D.cpp" />
+    <ClCompile Include="Source\Scene3D\Structure3D_2.cpp" />
+    <ClCompile Include="Source\Scene3D\WeaponInfo\Pistol.cpp" />
+    <ClCompile Include="Source\Scene3D\WeaponInfo\Projectile.cpp" />
+    <ClCompile Include="Source\Scene3D\WeaponInfo\Rifle.cpp" />
+    <ClCompile Include="Source\Scene3D\WeaponInfo\WeaponInfo.cpp" />
+    <ClCompile Include="Source\SoundController\SoundController.cpp" />
+    <ClCompile Include="Source\SoundController\SoundInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\CameraEffects\CameraEffects.h" />
+    <ClInclude Include="Source\CameraEffects\ProgressBar.h" />
+    <ClInclude Include="Source\CSVReader\CSVReader.h" />
+    <ClInclude Include="Source\CSVWriter\CSVWriter.h" />
+    <ClInclude Include="Source\Minimap\Minimap.h" />
+    <ClInclude Include="Source\Scene2D\AnimatedSprites.h" />
+    <ClInclude Include="Source\Scene2D\Enemy2D.h" />
+    <ClInclude Include="Source\Scene2D\Entity2D.h" />
+    <ClInclude Include="Source\Scene2D\Entity2DFactory.h" />
+    <ClInclude Include="Source\Scene2D\Map2D.h" />
+    <ClInclude Include="Source\Scene2D\Physics2D.h" />
+    <ClInclude Include="Source\Scene2D\Player2D.h" />
+    <ClInclude Include="Source\Scene2D\Scene2D.h" />
+    <ClInclude Include="Source\Scene3D\Camera.h" />
+    <ClInclude Include="Source\Scene3D\CrossHair\CrossHair.h" />
+    <ClInclude Include="Source\Scene3D\Enemy3D.h" />
+    <ClInclude Include="Source\Scene3D\EnemyBoss3D.h" />
+    <ClInclude Include="Source\Scene3D\EntityManager.h" />
+    <ClInclude Include="Source\Scene3D\GroundMap.h" />
+    <ClInclude Include="Source\Scene3D\GroundTile.h" />
+    <ClInclude Include="Source\Scene3D\Physics3D.h" />
+    <ClInclude Include="Source\Scene3D\Player3D.h" />
+    <ClInclude Include="Source\Scene3D\Scene3D.h" />
+    <ClInclude Include="Source\Scene3D\SkyBox.h" />
+    <ClInclude Include="Source\Scene3D\Structure3D.h" />
+    <ClInclude Include="Source\Scene3D\Structure3D_2.h" />
+    <ClInclude Include="Source\Scene3D\WeaponInfo\Pistol.h" />
+    <ClInclude Include="Source\Scene3D\WeaponInfo\Projectile.h" />
+    <ClInclude Include="Source\Scene3D\WeaponInfo\Rifle.h" />
+    <ClInclude Include="Source\Scene3D\WeaponInfo\WeaponInfo.h" />
+    <ClInclude Include="Source\SoundController\SoundController.h" />
+    <ClInclude Include="Source\SoundController\SoundInfo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9B172635-4E2B-46F1-A403-08F4194D00F5}</ProjectGuid>
@@ -60,15 +124,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_VARIADIC_MAX=10;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)/Library/Source;$(SolutionDir)/glfw/include;$(SolutionDir)/glew/include;$(SolutionDir)/glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Library/Source;$(SolutionDir)/glfw/include;$(SolutionDir)/glew/include;$(SolutionDir)/glm;$(SolutionDir)/irrKlang;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)/glfw/lib-msvc100;$(SolutionDir)/glew/lib;$(SolutionDir)/SOIL/lib;$(SolutionDir)/freetype/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Library.lib;winmm.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;SOIL.lib;freetype.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)/glfw/lib-msvc100;$(SolutionDir)/glew/lib;$(SolutionDir)/SOIL/lib;$(SolutionDir)/freetype/win32;$(SolutionDir)/irrKlang/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Library.lib;winmm.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;SOIL.lib;freetype.lib;legacy_stdio_definitions.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>
@@ -92,7 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)/glfw/lib-msvc100;$(SolutionDir)/glew/lib;$(SolutionDir)/SOIL/lib;$(SolutionDir)/freetype/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Library.lib;winmm.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;SOIL.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Library.lib;winmm.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;SOIL.lib;freetype.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

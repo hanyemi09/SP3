@@ -12,6 +12,30 @@
     <Filter Include="Scene2D">
       <UniqueIdentifier>{a357a60d-f2e7-4675-b29d-d35641c7a73c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CSVReader">
+      <UniqueIdentifier>{1e770403-d967-4f7c-bc12-de6961dc374c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSVWriter">
+      <UniqueIdentifier>{19b90937-0489-48ce-8ce5-283381379195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SoundController">
+      <UniqueIdentifier>{91cd05fb-0e5e-47e3-9640-0562dd11a0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene3D">
+      <UniqueIdentifier>{214c7f0f-9ab6-45f8-b734-0d469c34810c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene3D\WeaponInfo">
+      <UniqueIdentifier>{06cc7637-15d5-482a-a412-1606c97ea635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CameraEffects">
+      <UniqueIdentifier>{83c5722c-ef00-4d0f-953b-2538c1d7d467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Minimap">
+      <UniqueIdentifier>{cbb32c32-bed2-4ea9-af26-f666d977da96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene3D\CrossHair">
+      <UniqueIdentifier>{ef803315-4e4e-48fb-b28a-a536a675cb39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -20,10 +44,202 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Scene2D\Scene2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\Map2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CSVReader\CSVReader.cpp">
+      <Filter>CSVReader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\Player2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\Physics2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\Enemy2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\Entity2D.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\Entity2DFactory.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2D\AnimatedSprites.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CSVWriter\CSVWriter.cpp">
+      <Filter>CSVWriter</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SoundController\SoundController.cpp">
+      <Filter>SoundController</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SoundController\SoundInfo.cpp">
+      <Filter>SoundController</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Scene3D.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\SkyBox.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\GroundMap.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\GroundTile.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Camera.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Player3D.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Enemy3D.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\WeaponInfo\Projectile.cpp">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\WeaponInfo\WeaponInfo.cpp">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\WeaponInfo\Pistol.cpp">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\EntityManager.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraEffects\CameraEffects.cpp">
+      <Filter>CameraEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Minimap\Minimap.cpp">
+      <Filter>Minimap</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraEffects\ProgressBar.cpp">
+      <Filter>CameraEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Physics3D.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\CrossHair\CrossHair.cpp">
+      <Filter>Scene3D\CrossHair</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Structure3D.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\Structure3D_2.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\EnemyBoss3D.cpp">
+      <Filter>Scene3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3D\WeaponInfo\Rifle.cpp">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Scene2D.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Map2D.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CSVReader\CSVReader.h">
+      <Filter>CSVReader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Player2D.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Physics2D.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Enemy2D.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Entity2D.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Entity2DFactory.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\AnimatedSprites.h">
+      <Filter>Scene2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CSVWriter\CSVWriter.h">
+      <Filter>CSVWriter</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SoundController\SoundController.h">
+      <Filter>SoundController</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SoundController\SoundInfo.h">
+      <Filter>SoundController</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Scene3D.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\SkyBox.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\GroundMap.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\GroundTile.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Camera.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Player3D.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Enemy3D.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\WeaponInfo\Projectile.h">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\WeaponInfo\WeaponInfo.h">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\WeaponInfo\Pistol.h">
+      <Filter>Scene3D\WeaponInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\EntityManager.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraEffects\CameraEffects.h">
+      <Filter>CameraEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Minimap\Minimap.h">
+      <Filter>Minimap</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraEffects\ProgressBar.h">
+      <Filter>CameraEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Physics3D.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\CrossHair\CrossHair.h">
+      <Filter>Scene3D\CrossHair</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Structure3D.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\Structure3D_2.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\EnemyBoss3D.h">
+      <Filter>Scene3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3D\WeaponInfo\Rifle.h">
+      <Filter>Scene3D\WeaponInfo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

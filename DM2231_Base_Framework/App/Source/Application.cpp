@@ -22,8 +22,12 @@
 
 // Inputs
 #include "Inputs\KeyboardController.h"
+#include "Inputs\MouseController.h"
 
 #include <iostream>
+
+//CSoundController* Application::soundengine = nullptr;
+
 using namespace std;
 
 /**
@@ -47,12 +51,12 @@ static void error_callback(int error, const char* description)
  */
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, GL_TRUE);
+	CKeyboardController::GetInstance()->Update(key, action);
 }
 
 /**
  @brief Callback function when the OpenGL window is repositioned
+ @param window The window to receive the the instructions
  @param xpos integer value of the new x position of the window
  @param ypos integer value of the new y position of the window
 */
@@ -67,6 +71,7 @@ void repos_callback(GLFWwindow* window, int xpos, int ypos)
 
 /**
  @brief Callback function when the OpenGL window is resized
+ @param window The window to receive the the instructions
  @param w integer value of the new width of the window
  @param h integer value of the new height of the window
  */
@@ -79,13 +84,31 @@ void resize_callback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
+/**
+ @brief Callback function whenever the mouse has events
+ @param window The window to receive the the instructions
+ @param button An integer value of the mouse button causing the event
+ @param action An integer value of the action caused by the mouse button
+ @param mods An integer value storing the mods of the event
+ */
+void MouseButtonCallbacks(GLFWwindow* window, int button, int action, int mods)
+{
+	// Send the callback to the mouse controller to handle
+	if (action == GLFW_PRESS)
+		CMouseController::GetInstance()->UpdateMouseButtonPressed(button);
+	else
+		CMouseController::GetInstance()->UpdateMouseButtonReleased(button);
+}
 
 /**
-@brief Constructor
-*/
-Application::Application(void)
-	: cSettings(NULL)
+ @brief Callback function whenever the mouse has events
+ @param window The window to receive the the instructions
+ @param xoffset A double value of the mouse scroll offset in the x-axis
+ @param yoffset A double value of the mouse scroll offset in the y-axis
+ */
+void MouseScrollCallbacks(GLFWwindow* window, double xoffset, double yoffset)
 {
+	CMouseController::GetInstance()->UpdateMouseScroll(xoffset, yoffset);
 }
 
 /**
@@ -154,23 +177,45 @@ bool Application::Init(void)
 	glfwSetFramebufferSizeCallback(cSettings->pWindow, resize_callback);
 	//Set the error callback function
 	glfwSetErrorCallback(error_callback);
+	// Set the keyboard callback function
+	glfwSetKeyCallback(cSettings->pWindow, key_callback);
+	//Set the mouse button callback function
+	glfwSetMouseButtonCallback(cSettings->pWindow, MouseButtonCallbacks);
+	//Set the mouse scroll callback function
+	glfwSetScrollCallback(cSettings->pWindow, MouseScrollCallbacks);
 
 	// Additional customisation for the GLFW environment
-	// Hide the cursor
-	if (cSettings->bShowMousePointer == false)
-		glfwSetInputMode(cSettings->pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	// Disable the cursor
+	if (cSettings->bDisableMousePointer == true)
+		glfwSetInputMode(cSettings->pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	else
+		// Hide the cursor
+		if (cSettings->bShowMousePointer == false)
+			glfwSetInputMode(cSettings->pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
-	//// glewExperimental is a variable that is already defined by GLEW. You must set it to GL_TRUE before calling glewInit(). 
-	//glewExperimental = GL_TRUE;
-	//// Initialize GLEW
-	//GLenum glewInitErr = glewInit();
-	////If GLEW hasn't initialized, then return false
-	//if (glewInitErr != GLEW_OK)
-	//{
-	//	fprintf(stderr, "Error: %s\n", glewGetErrorString(glewInitErr));
-	//	glfwTerminate();
-	//	return false;
-	//}
+	// glewExperimental is a variable that is already defined by GLEW. You must set it to GL_TRUE before calling glewInit(). 
+	glewExperimental = GL_TRUE;
+	// Initialize GLEW
+	GLenum glewInitErr = glewInit();
+	//If GLEW hasn't initialized, then return false
+	if (glewInitErr != GLEW_OK)
+	{
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(glewInitErr));
+		glfwTerminate();
+		return false;
+	}
+
+	// Initialise the cScene3D instance
+	cScene3D = CScene3D::GetInstance();
+	if (cScene3D->Init() == false)
+	{
+		cout << "Failed to load Scene2D" << endl;
+		return false;
+	}
+
+	// Initialise the CFPSCounter instance
+	cFPSCounter = CFPSCounter::GetInstance();
+	cFPSCounter->Init();
 
 	return true;
 }
@@ -183,10 +228,24 @@ void Application::Run(void)
 	// Start timer to calculate how long it takes to render this frame
 	cStopWatch.StartTimer();
 
+	double dElapsedTime = 0.0;
+
 	// Render loop
 	while (!glfwWindowShouldClose(cSettings->pWindow)
-		&& (!CKeyboardController::GetInstance()->IsKeyReleased(VK_ESCAPE)))
+		&& (!CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE)))
 	{
+		// Call the cScene3D's Update method
+		cScene3D->Update(dElapsedTime);
+
+		// Call the cScene3D's Pre-Render method
+		cScene3D->PreRender();
+
+		// Call the cScene3D's Render method
+		cScene3D->Render();
+
+		// Call the cScene3D's PostRender method
+		cScene3D->PostRender();
+
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
 		glfwSwapBuffers(cSettings->pWindow);
@@ -196,6 +255,12 @@ void Application::Run(void)
 
 		// Update Input Devices
 		UpdateInputDevices();
+
+		//// Perform Post Update Input Devices
+		//PostUpdateInputDevices();
+
+		dElapsedTime = cStopWatch.GetElapsedTime();
+		cFPSCounter->Update(dElapsedTime);
 
 		// Frame rate limiter. Limits each frame to a specified time in ms.   
 		cStopWatch.WaitUntil(cSettings->frameTime);
@@ -207,20 +272,27 @@ void Application::Run(void)
  */
 void Application::Destroy(void)
 {
+	// Destroy the keyboard instance
+	CKeyboardController::GetInstance()->Destroy();
+
+	// Destroy the CFPSCounter instance
+	if (cFPSCounter)
+	{
+		cFPSCounter->Destroy();
+		cFPSCounter = NULL;
+	}
+
+	// Destroy the cScene3D instance
+	if (cScene3D)
+	{
+		cScene3D->Destroy();
+		cScene3D = NULL;
+	}
+
 	//Close OpenGL window and terminate GLFW
 	glfwDestroyWindow(cSettings->pWindow);
 	//Finalize and clean up GLFW
 	glfwTerminate();
-
-	// Destroy the keyboard instance
-	CKeyboardController::GetInstance()->Destroy();
-
-	// Destroy the CSettings instance
-	if (cSettings)
-	{
-		cSettings->Destroy();
-		cSettings = NULL;
-	}
 }
 
 /**
@@ -239,19 +311,50 @@ int Application::GetWindowWidth(void) const
 	return cSettings->iWindowWidth;
 }
 
+void Application::setSoundEngine(CSoundController* engine)
+{
+	soundengine = engine;
+}
+
+CSoundController* Application::getSoundEngine()
+{
+	return soundengine;
+}
+
+/**
+ @brief Constructor
+ */
+Application::Application(void)
+	: cFPSCounter(NULL)
+{
+}
+
 /**
 @brief Get updates from the input devices
 */
 void Application::UpdateInputDevices(void)
 {
-	// Update Keyboard Input
-	CKeyboardController::GetInstance()->Update();
+	// Update Mouse Position
+	double dMouse_X, dMouse_Y;
+	glfwGetCursorPos( cSettings->pWindow, &dMouse_X, &dMouse_Y);
+	CMouseController::GetInstance()->UpdateMousePosition( dMouse_X, dMouse_Y);
 }
 
 /**
-@brief End updates from the input devices
-*/
+ @brief End updates from the input devices. This method is not used anymore
+ */
 void Application::PostUpdateInputDevices(void)
 {
-	CKeyboardController::GetInstance()->PostUpdate();
+	// If mouse is centered, need to update the center position for next frame
+	if (CMouseController::GetInstance()->GetKeepMouseCentered())
+	{
+		double dMouse_X, dMouse_Y;
+		dMouse_X = cSettings->iWindowWidth >> 1;
+		dMouse_Y = cSettings->iWindowHeight >> 1;
+		CMouseController::GetInstance()->UpdateMousePosition( dMouse_X, dMouse_Y);
+		glfwSetCursorPos(cSettings->pWindow, dMouse_X, dMouse_Y);
+	}
+
+	// Call input systems to update at end of frame
+	CMouseController::GetInstance()->PostUpdate();
 }

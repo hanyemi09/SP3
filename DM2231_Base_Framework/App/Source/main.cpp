@@ -9,7 +9,13 @@
 	0=Non-debug mode, 1=Debug mode
  Note: You can use the debug macro inside Visual Studio project properties.
  */
-#define _DEBUGMODE 1;
+#define _DEBUGMODE 1
+
+/**
+Boolean macro to determine if the program is in 3D or 2D mode
+0=2D mode, 1=3D mode
+*/
+#define _3DMODE 1
 
 /**
  @brief This function is the main function which is called by the operating system when you run the executables

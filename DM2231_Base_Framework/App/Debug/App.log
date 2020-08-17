@@ -1,0 +1,48 @@
+﻿  Application.cpp
+  CameraEffects.cpp
+  ProgressBar.cpp
+D:\GitHub\SP3\DM2231_Base_Framework\App\Source\CameraEffects\ProgressBar.cpp(120,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  CSVReader.cpp
+  CSVWriter.cpp
+  main.cpp
+  Minimap.cpp
+  AnimatedSprites.cpp
+  Enemy2D.cpp
+  Entity2D.cpp
+  Entity2DFactory.cpp
+  Map2D.cpp
+  Physics2D.cpp
+  Player2D.cpp
+  Scene2D.cpp
+  Camera.cpp
+  CrossHair.cpp
+  Enemy3D.cpp
+  EnemyBoss3D.cpp
+D:\GitHub\SP3\DM2231_Base_Framework\App\Source\Scene3D\EnemyBoss3D.cpp(231,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  EntityManager.cpp
+  Generating Code...
+  Compiling...
+  GroundMap.cpp
+  GroundTile.cpp
+  Physics3D.cpp
+  Player3D.cpp
+  Scene3D.cpp
+D:\GitHub\SP3\DM2231_Base_Framework\App\Source\Scene3D\Scene3D.cpp(213,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\GitHub\SP3\DM2231_Base_Framework\App\Source\Scene3D\Scene3D.cpp(285,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\GitHub\SP3\DM2231_Base_Framework\App\Source\Scene3D\Scene3D.cpp(286,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  SkyBox.cpp
+  Structure3D.cpp
+  Structure3D_2.cpp
+  Pistol.cpp
+  Projectile.cpp
+  Rifle.cpp
+  WeaponInfo.cpp
+  SoundController.cpp
+  SoundInfo.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  App.vcxproj -> D:\GitHub\SP3\DM2231_Base_Framework\Debug\App.exe

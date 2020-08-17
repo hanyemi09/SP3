@@ -1,0 +1,2 @@
+D:\GitHub\SP3\DM2231_Base_Framework\Debug\Library.pdb
+D:\GitHub\SP3\DM2231_Base_Framework\Library\Debug\Library.pdb

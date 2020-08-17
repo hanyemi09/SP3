@@ -126,9 +126,10 @@ bool CEntityManager::CollisionCheck(CEntity3D* cEntity3D)
 				cout << "** Collision between Player and NPC ***" << endl;
 				bResult = true;
 				
-				cSoundController->PlaySoundByID(1);
+				//cSoundController->PlaySoundByID(1);
 
-				static_cast<CProgressBar*>(cProgressBar)->set_healthBarState(true);
+				static_cast<CHealthBar*>(cHealthBar)->SetHealthBarState(true);
+				static_cast<CArmorBar*>(cArmorBar)->SetArmorBarState(true);
 
 				// Quit this loop since a collision has been found
 				break;
@@ -147,7 +148,7 @@ bool CEntityManager::CollisionCheck(CEntity3D* cEntity3D)
 				// Rollback the cEntity3D's position
 				cEntity3D->RollbackPosition();
 
-				cSoundController->PlaySoundByID(2);
+				//cSoundController->PlaySoundByID(2);
 
 				cout << "** Collision between Player and Structure ***" << endl;
 				bResult = true;
@@ -310,7 +311,15 @@ void CEntityManager::set_enemy_deathCount(int x)
 	enemy_deathCount = x;
 }
 
-void CEntityManager::set_ProgressBar(CProgressBar* pBar)
+void CEntityManager::SetHealthBar(CHealthBar* pBar)
 {
-	cProgressBar = pBar;
+	cHealthBar = pBar;
 }
+
+
+void CEntityManager::SetArmorBar(CArmorBar* pBar)
+{
+	cArmorBar = pBar;
+}
+
+

@@ -42,7 +42,7 @@ CScene3D::CScene3D(void)
 	, cSkyBox(NULL)
 	, cGroundMap(NULL)
 	, cCameraEffects(NULL)
-	, cProgressBar(NULL)
+	, cHealthBar(NULL)
 	, cMinimap(NULL)
 	, cCrossHair(NULL)
 	, cWeaponInfo(NULL)
@@ -73,10 +73,16 @@ CScene3D::~CScene3D(void)
 	}
 	
 	// Destroy the cCameraEffects
-	if (cProgressBar)
+	if (cHealthBar)
 	{
-		delete cProgressBar;
-		cProgressBar = NULL;
+		delete cHealthBar;
+		cHealthBar = NULL;
+	}
+	// Destroy the cCameraEffects
+	if (cArmorBar)
+	{
+		delete cArmorBar;
+		cArmorBar = NULL;
 	}
 
 	// Destroy the cCameraEffects
@@ -437,12 +443,20 @@ bool CScene3D::Init(void)
 	cCameraEffects->Init();
 
 	// Load the ProgressBar
-	cProgressBar = new CProgressBar();
+	cHealthBar = new CHealthBar();
 	// Set a shader to this class instance of CameraEffects
-	cProgressBar->SetShader(cGUISimpleShader);
-	cProgressBar->Init();
+	cHealthBar->SetShader(cGUISimpleShader);
+	cHealthBar->Init(glm::vec3(- 1.0f + 0.0333f, -1.0f + 0.0333f * 58, 0.0f), glm::vec4(1.0f, 0.0f, 0.0f, 0.5f));
 
-	cEntityManager->set_ProgressBar(cProgressBar);
+	cEntityManager->SetHealthBar(cHealthBar);
+
+	// Load the ProgressBar
+	cArmorBar = new CArmorBar();
+	// Set a shader to this class instance of CameraEffects
+	cArmorBar->SetShader(cGUISimpleShader);
+	cArmorBar->Init(glm::vec3(-1.0f + 0.0333f, -1.1f + 0.0333f * 58, 0.0f), glm::vec4(0.0f, 0.0f, 1.0f, 0.5f));
+
+	cEntityManager->SetArmorBar(cArmorBar);
 
 	// Load the Minimap
 	cMinimap = CMinimap::GetInstance();
@@ -559,11 +573,11 @@ void CScene3D::Update(const double dElapsedTime)
 	{
 		if (cWeaponInfo->type == CWeaponInfo::WeaponType::PISTOL)
 		{
-			cSoundController->PlaySoundByID(8);
+			//cSoundController->PlaySoundByID(8);
 		}
 		else
 		{
-			cSoundController->PlaySoundByID(9);
+			//cSoundController->PlaySoundByID(9);
 		}
 
 		cPlayer3D->GetWeapon()->Reload();
@@ -581,14 +595,14 @@ void CScene3D::Update(const double dElapsedTime)
 			{
 				cCamera->fPitch = 90;
 				cCamera->fYaw = 90;
-				cSoundController->PlaySoundByID(3);
+				//cSoundController->PlaySoundByID(3);
 			}
 		}
 		else
 		{
 			if (cWeaponInfo->GetMagRound() > 0)
 			{
-				cSoundController->PlaySoundByID(4);
+				//cSoundController->PlaySoundByID(4);
 			}
 		}
 		// If the projectile was successfully created then add to the EntityManager
@@ -642,13 +656,13 @@ void CScene3D::Update(const double dElapsedTime)
 	// WIN LOSE CONDITIONS
 	if (cEntityManager->get_enemy_deathCount() > 1 && bossDED == true && printWinScreen == false)
 	{
-		cSoundController->PlaySoundByID(6);
+		//cSoundController->PlaySoundByID(6);
 		printWinScreen = true;
 	}
 
-	if (static_cast<CProgressBar*>(cProgressBar)->get_healthBarLength() <= 0 && printLoseScreen == false)
+	if (static_cast<CHealthBar*>(cHealthBar)->GetHealthBarLength() <= 0 && printLoseScreen == false)
 	{
-		cSoundController->PlaySoundByID(5);
+		//cSoundController->PlaySoundByID(5);
 		printLoseScreen = true;
 	}
 
@@ -674,7 +688,11 @@ void CScene3D::Update(const double dElapsedTime)
 	cCameraEffects->Update(dElapsedTime);
 
 	// Update progress bar
-	cProgressBar->Update(dElapsedTime);
+
+	if (static_cast<CArmorBar*>(cArmorBar)->GetArmorBarLength() >= 0)
+		cArmorBar->Update(dElapsedTime);
+	else
+		cHealthBar->Update(dElapsedTime);
 
 	cWeaponInfo = cPlayer3D->GetWeapon();
 }
@@ -797,9 +815,13 @@ void CScene3D::Render(void)
 	cCameraEffects->Render();
 	cCameraEffects->PostRender();
 
-	cProgressBar->PreRender();
-	cProgressBar->Render();
-	cProgressBar->PostRender();
+	cHealthBar->PreRender();
+	cHealthBar->Render();
+	cHealthBar->PostRender();
+	
+	cArmorBar->PreRender();
+	cArmorBar->Render();
+	cArmorBar->PostRender();
 
 	cCrossHair->PreRender();
 	cCrossHair->Render(cPlayer3D->GetWeapon());

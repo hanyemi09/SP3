@@ -16,7 +16,8 @@
 
 #include "Enemy3D.h"
 #include "EnemyBoss3D.h"
-#include "../CameraEffects/ProgressBar.h"
+#include "../CameraEffects/HealthBar.h"
+#include "../CameraEffects/ArmorBar.h"
 
 #include "../SoundController/SoundController.h"
 
@@ -55,7 +56,8 @@ public:
 	int get_enemy_deathCount();
 	void set_enemy_deathCount(int x);
 
-	void set_ProgressBar(CProgressBar* pBar);
+	void SetHealthBar(CHealthBar* pBar);
+	void SetArmorBar(CArmorBar* pBar);
 	//int enemyHealth;
 
 protected:
@@ -71,7 +73,8 @@ protected:
 
 	//CEnemyBoss3D cEnemyBoss3D;
 
-	CProgressBar* cProgressBar;
+	CHealthBar* cHealthBar;
+	CArmorBar* cArmorBar;
 
 	CSoundController* cSoundController;
 

@@ -92,9 +92,6 @@
     <ClCompile Include="Source\Minimap\Minimap.cpp">
       <Filter>Minimap</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CameraEffects\ProgressBar.cpp">
-      <Filter>CameraEffects</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene3D\Physics3D.cpp">
       <Filter>Scene3D</Filter>
     </ClCompile>
@@ -112,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="Source\Scene3D\WeaponInfo\Rifle.cpp">
       <Filter>Scene3D\WeaponInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraEffects\HealthBar.cpp">
+      <Filter>CameraEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraEffects\ArmorBar.cpp">
+      <Filter>CameraEffects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,9 +172,6 @@
     <ClInclude Include="Source\Minimap\Minimap.h">
       <Filter>Minimap</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CameraEffects\ProgressBar.h">
-      <Filter>CameraEffects</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene3D\Physics3D.h">
       <Filter>Scene3D</Filter>
     </ClInclude>
@@ -189,6 +189,12 @@
     </ClInclude>
     <ClInclude Include="Source\Scene3D\WeaponInfo\Rifle.h">
       <Filter>Scene3D\WeaponInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraEffects\HealthBar.h">
+      <Filter>CameraEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraEffects\ArmorBar.h">
+      <Filter>CameraEffects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

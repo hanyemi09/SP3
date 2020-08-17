@@ -21,28 +21,6 @@ void CKeyboardController::PreUpdate(void)
 {
 }
 
-/**
- @brief Perform update operations
- */
-void CKeyboardController::Update(void)
-{
-	bool _isPressed = false;
-
-	// Update Keyboard Input
-	for (int i = 0; i < CKeyboardController::MAX_KEYS; ++i)
-	{
-		_isPressed = CheckKeyStatus(i);
-
-		if (_isPressed != currStatus[i])
-		{
-			// Backup the curStatus to prevStatus
-			prevStatus.set(i, currStatus[i]);
-			// Set the new status to curStatus
-			currStatus.set(i, _isPressed);
-		}
-	}
-
-}
 
 /**
 @brief Perform post-update operations
@@ -55,47 +33,61 @@ void CKeyboardController::PostUpdate(void)
 }
 
 /**
- @brief Check if a key is pressed down
- @param _slot A const unsigned char variable to check in the currStatus array
+ @brief Perform update operation for a key
  */
-bool CKeyboardController::IsKeyDown(const unsigned char _slot)
+void CKeyboardController::Update(const int key, const int action)
 {
-	return currStatus.test(_slot);
+	if ((key >= 0) && (key <= MAX_KEYS) && (action != 2))
+	{
+		// Backup the curStatus to prevStatus
+		prevStatus.set(key, currStatus[key]);
+		// Set the new status to curStatus
+		currStatus.set(key, action);
+	}
+}
+
+/**
+ @brief Check if a key is pressed down
+ @param int A const int variable to check in the currStatus array
+ */
+bool CKeyboardController::IsKeyDown(const int key)
+{
+	return currStatus.test(key);
 }
 
 /**
  @brief Check if a key is up a.k.a. not pressed down
- @param _slot A const unsigned char variable to check in the currStatus array
+ @param int A const int variable to check in the currStatus array
  */
-bool CKeyboardController::IsKeyUp(const unsigned char _slot)
+bool CKeyboardController::IsKeyUp(const int key)
 {
-	return !currStatus.test(_slot);
+	return !currStatus.test(key);
 }
 
 /**
  @brief Check if a key is pressed down and held down
- @param _slot A const unsigned char variable to check in the currStatus and prevStatus array
+ @param int A const int variable to check in the currStatus and prevStatus array
  */
-bool CKeyboardController::IsKeyPressed(const unsigned char _slot)
+bool CKeyboardController::IsKeyPressed(const int key)
 {
-	return IsKeyDown(_slot) && !prevStatus.test(_slot);
+	return IsKeyDown(key) && !prevStatus.test(key);
 }
 
 /**
  @brief Check if a key is released after being held down
- @param _slot A const unsigned char variable to check in the currStatus array
+ @param int A const int variable to check in the currStatus array
  */
-bool CKeyboardController::IsKeyReleased(const unsigned char _slot)
+bool CKeyboardController::IsKeyReleased(const int key)
 {
-	return IsKeyUp(_slot) && prevStatus.test(_slot);
+	return IsKeyUp(key) && prevStatus.test(key);
 }
 
 /**
- @brief Check the status of a key
- @param key An unsigned short variable to pass the keycode to this method
- @return true if the key is being pressed down, false otherwise
-*/
-bool CKeyboardController::CheckKeyStatus(const unsigned short key)
+ @brief Reset a key
+ @param int A const int variable to reset a key in the currStatus and prevStatus array
+ */
+void CKeyboardController::ResetKey(const int key)
 {
-	return ((GetAsyncKeyState(key) & 0x8001) != 0);
+	currStatus[key] = false;
+	prevStatus[key] = false;
 }

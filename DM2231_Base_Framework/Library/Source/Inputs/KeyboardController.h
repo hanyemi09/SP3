@@ -15,21 +15,24 @@ class CKeyboardController : public CSingletonTemplate<CKeyboardController>
 
 public:
 	// Constant int to indicate how many keys will be processed
-	const static int MAX_KEYS = 256;
+	const static int MAX_KEYS = 348;
 
 	// System Interface
 	// Perform pre-update operations
 	void PreUpdate(void);
-	// Perform update operations
-	void Update(void);
+	// Perform update operation for a key
+	void Update(const int key, const int action);
 	// Perform post-update operations
 	void PostUpdate(void);
-	
+
 	// User Interface
-	bool IsKeyDown(const unsigned char _slot);
-	bool IsKeyUp(const unsigned char _slot);
-	bool IsKeyPressed(const unsigned char _slot);
-	bool IsKeyReleased(const unsigned char _slot);
+	bool IsKeyDown(const int key);
+	bool IsKeyUp(const int key);
+	bool IsKeyPressed(const int key);
+	bool IsKeyReleased(const int key);
+
+	// Reset a key
+	void ResetKey(const int key);
 
 protected:
 	// Constructor
@@ -40,7 +43,4 @@ protected:
 
 	// Bitset to store information about current and previous keypress statuses
 	std::bitset<MAX_KEYS> currStatus, prevStatus;
-
-	// Check key status
-	bool CheckKeyStatus(const unsigned short key);
 };

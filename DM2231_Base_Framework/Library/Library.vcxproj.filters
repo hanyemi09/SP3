@@ -27,8 +27,14 @@
     <Filter Include="System">
       <UniqueIdentifier>{d352a9d2-8181-43bc-a208-075621bc19db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Primitives">
+      <UniqueIdentifier>{ccad508a-65f4-4d9c-832a-b4d2af7e5812}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\TimeControl\FPSCounter.cpp">
+      <Filter>TimeControl</Filter>
+    </ClCompile>
     <ClCompile Include="Source\TimeControl\StopWatch.cpp">
       <Filter>TimeControl</Filter>
     </ClCompile>
@@ -47,10 +53,28 @@
     <ClCompile Include="Source\System\ImageLoader.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Primitives\Entity3D.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Primitives\Collider.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Inputs\JoystickController.cpp">
+      <Filter>Inputs</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\LoadOBJ.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\TimeControl\FPSCounter.h">
+      <Filter>TimeControl</Filter>
+    </ClInclude>
     <ClInclude Include="Source\TimeControl\StopWatch.h">
       <Filter>TimeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DesignPatterns\SingletonTemplate.h">
+      <Filter>DesignPatterns</Filter>
     </ClInclude>
     <ClInclude Include="Source\Inputs\KeyboardController.h">
       <Filter>Inputs</Filter>
@@ -73,8 +97,17 @@
     <ClInclude Include="Source\System\ImageLoader.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DesignPatterns\SingletonTemplate.h">
-      <Filter>DesignPatterns</Filter>
+    <ClInclude Include="Source\Primitives\Entity3D.h">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Primitives\Collider.h">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Inputs\JoystickController.h">
+      <Filter>Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\LoadOBJ.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

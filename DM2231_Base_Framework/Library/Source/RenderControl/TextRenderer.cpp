@@ -83,7 +83,7 @@ bool CTextRenderer::Init(void)
 		std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
 
 	// Set size to load glyphs as
-	FT_Set_Pixel_Sizes(face, 0, 48);
+	FT_Set_Pixel_Sizes(face, 0, 40);
 
 	// Disable byte-alignment restriction
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

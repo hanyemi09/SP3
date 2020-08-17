@@ -43,6 +43,7 @@ public:
 	unsigned int iWindowHeight = 600;
 	unsigned int iWindowPosX = 50;
 	unsigned int iWindowPosY = 50;
+	bool bDisableMousePointer = true;
 	bool bShowMousePointer = false;
 
 	// Frame Rate Information

@@ -1,17 +1,15 @@
 /**
- MouseController
+ CMouseController
  By: Toh Da Jun
  Date: Mar 2020
  */
 #pragma once
 
-// Include SingletonTemplate
 #include "../DesignPatterns/SingletonTemplate.h"
 
-class MouseController : public CSingletonTemplate<MouseController>
+class CMouseController : public CSingletonTemplate<CMouseController>
 {
-	friend CSingletonTemplate<MouseController>;
-
+	friend CSingletonTemplate<CMouseController>;
 public:
 	enum BUTTON_TYPE
 	{
@@ -27,36 +25,44 @@ public:
 		NUM_SCROLL_TYPE
 	};
 
-	// System Interface
-	void UpdateMousePosition(double _x, double _y);
-	void UpdateMouseButtonPressed(int _slot);
-	void UpdateMouseButtonReleased(int _slot);
-	void UpdateMouseScroll(const double xoffset, const double yoffset);
-	void EndFrameUpdate();
+	// Update this class istance
+	void UpdateMousePosition(const double _x, const double _y);
+	void UpdateMouseButtonPressed(const int _slot);
+	void UpdateMouseButtonReleased(const int _slot);
+	void UpdateMouseScroll(const double WheelOffset_X, const double WheelOffset_Y);
+	void PostUpdate(void);
 
-	// User Interface
-	bool IsButtonDown(unsigned char _slot);
-	bool IsButtonUp(unsigned char _slot);
-	bool IsButtonPressed(unsigned char _slot);
-	bool IsButtonReleased(unsigned char _slot);
-	double GetMouseScrollStatus(SCROLL_TYPE _scrolltype);
+	// Check the button and scroll wheel statuses
+	bool IsButtonDown(const unsigned char _slot);
+	bool IsButtonUp(const unsigned char _slot);
+	bool IsButtonPressed(const unsigned char _slot);
+	bool IsButtonReleased(const unsigned char _slot);
+	double GetMouseScrollStatus(const SCROLL_TYPE _scrolltype) const;
 
-	void GetMousePosition(float& _resultX, float& _resultY);
-	void GetMousePosition(double& _resultX, double& _resultY);
-	void GetMouseDelta(float& _resultX, float& _resultY);
-	void GetMouseDelta(double& _resultX, double& _resultY);
+	// Get values from this class istance
+	double GetMousePositionX(void) const;
+	double GetMousePositionY(void) const;
+	double GetMouseDeltaX(void) const;
+	double GetMouseDeltaY(void) const;
 
-	inline bool GetKeepMouseCentered(){ return keepMouseCentered; };
-	inline void SetKeepMouseCentered(bool _value){ keepMouseCentered = _value; };
+	// Get or Set status of keeping the mouse centered
+	inline bool GetKeepMouseCentered() const { return bKeepMouseCentered; };
+	inline void SetKeepMouseCentered(bool _value){ bKeepMouseCentered = _value; };
 
 protected:
 	// Constructor
-	MouseController(void);
+	CMouseController(void);
 	// Destructor
-	~MouseController(void);
+	~CMouseController(void);
 
-	double curr_posX, curr_posY, prev_posX, prev_posY;
+	double	curr_posX, curr_posY, 
+			prev_posX, prev_posY, 
+			delta_posX, delta_posY;
 	unsigned char currBtnStatus, prevBtnStatus;
-	double xoffset, yoffset;
-	bool keepMouseCentered;
+	double WheelOffset_X, WheelOffset_Y;
+
+	// Boolean flag to indicate if the mouse will be kept centered
+	bool bKeepMouseCentered;
+	// Boolean flag to indicate that this class instance is waiting for its first update
+	bool bFirstUpdate;
 };

@@ -341,6 +341,7 @@ void CPlayer3D::SetToJump(void)
  */
 void CPlayer3D::ProcessMovement(const Player_Movement direction, const float deltaTime)
 {
+	float sprintVel = 1.5f;
 	float velocity = fMovementSpeed * deltaTime;
 	if (direction == FORWARD)
 		vec3Position += vec3Front * velocity;
@@ -351,7 +352,7 @@ void CPlayer3D::ProcessMovement(const Player_Movement direction, const float del
 	if (direction == RIGHT)
 		vec3Position += vec3Right * velocity;
 	if (direction == SPRINT)
-		vec3Position += vec3Front * velocity * 1.5f;
+		vec3Position += vec3Front * velocity * sprintVel;
 
 	// Indicate that camera sway is to be updated
 	if (bCameraSwayActive)
